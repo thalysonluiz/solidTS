@@ -5,7 +5,7 @@ type CartItem = {
 
 type orderStatus = 'open' | 'closed';
 
-export class ShoppingCart {
+export class ShoppingCartOld {
   private readonly _items: CartItem[] = [];
   private _orderStatus: orderStatus = 'open';
 
