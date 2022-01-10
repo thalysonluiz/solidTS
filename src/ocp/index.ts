@@ -1,0 +1,19 @@
+import { Messaging } from './services/messaging';
+import { Order } from './entities/order';
+import { Persistency } from './services/persistency';
+import { Product } from './entities/product';
+import { ShoppingCart } from './entities/shopping-cart';
+import { FiftyPercentDiscount } from './entities/discount';
+
+const fiftyPercentDiscount = new FiftyPercentDiscount();
+const shoppingCart = new ShoppingCart(fiftyPercentDiscount);
+const messaging = new Messaging();
+const persistency = new Persistency();
+const order = new Order(shoppingCart, messaging, persistency);
+
+shoppingCart.addItem(new Product('Camiseta', 49.9));
+shoppingCart.addItem(new Product('Blazer', 199.9));
+
+console.log(shoppingCart.items);
+console.log(shoppingCart.totalWithDiscount());
+console.log(order.orderStatus);
